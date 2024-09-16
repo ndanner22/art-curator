@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./App.css";
+import HomePage from "./Components/HomePage";
 
 function App() {
   return (
     <>
-      <h1>Art Curator</h1>
+      <HomePage />
     </>
   );
 }
