@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import ArtworkItem from "./ArtworkItem";
-import { searchMetArtworks } from "../api";
+import { useState } from "react";
+import ArtPieceCard from "./ArtPieceCard";
+import { searchMetArtworks } from "../Utils/api";
 
-const ArtWorks = () => {
+const ArtWorks = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
   const [artWorks, setArtWorks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,8 +40,12 @@ const ArtWorks = () => {
       {error && <p>{error}</p>}
 
       <div>
-        {artWorks.map((artwork) => (
-          <ArtworkItem key={artwork.objectID} artwork={artwork} />
+        {artWorks.map((artWork) => (
+          <ArtPieceCard
+            key={artWork.objectID}
+            artWork={artWork}
+            addToCollection={addToCollection}
+          />
         ))}
       </div>
     </div>
