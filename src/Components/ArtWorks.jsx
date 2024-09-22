@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ArtPieceCard from "./ArtPieceCard";
-import { searchMetArtworks } from "../Utils/api";
+import { searchMetArtworks, searchRijksmuseumArtworks } from "../Utils/api";
 
 const ArtWorks = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
@@ -12,16 +12,34 @@ const ArtWorks = ({ addToCollection }) => {
     setLoading(true);
     setError(null);
 
-    searchMetArtworks(search)
-      .then((results) => {
-        setArtWorks(results);
+    Promise.all([searchMetArtworks(search), searchRijksmuseumArtworks(search)])
+      .then(([metResults, rijksResults]) => {
+        // Combine the results from both APIs
+        const combinedArtworks = [
+          ...metResults.map((artWork) => ({
+            id: artWork.objectID,
+            title: artWork.title,
+            image: artWork.primaryImageSmall || "placeholder-image.jpg",
+            artist: artWork.artistDisplayName || "Unknown Artist",
+            api: "MET",
+          })),
+          ...rijksResults.map((artwork) => ({
+            id: artwork.objectNumber,
+            title: artwork.title,
+            image: artwork.webImage?.url || "placeholder-image.jpg",
+            artist: artwork.principalOrFirstMaker || "Unknown Artist",
+            api: "Rijks",
+          })),
+        ];
+
+        setArtWorks(combinedArtworks); // Set the combined results into state
       })
       .catch((err) => {
         console.error("Failed to fetch artworks:", err);
         setError("Failed to fetch artworks. Please try again.");
       })
       .finally(() => {
-        setLoading(false);
+        setLoading(false); // Stop the loading spinner when done
       });
   };
 
