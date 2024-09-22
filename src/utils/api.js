@@ -1,13 +1,22 @@
 import axios from "axios";
 
-export const getArtById = (artId) => {
-  const baseUrl = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${artId}`;
-  return axios
-    .get(baseUrl)
-    .then(({ data }) => {
-      return { data };
+const MET_API_BASE_URL =
+  "https://collectionapi.metmuseum.org/public/collection/v1";
+
+export const searchMetArtworks = async (searchTerm) => {
+  const response = await axios.get(
+    `${MET_API_BASE_URL}/search?q=${searchTerm}`
+  );
+  const objectIDs = response.data.objectIDs?.slice(0, 10) || [];
+
+  const artworks = await Promise.all(
+    objectIDs.map(async (id) => {
+      const artworkResponse = await axios.get(
+        `${MET_API_BASE_URL}/objects/${id}`
+      );
+      return artworkResponse.data;
     })
-    .catch(({ response }) => {
-      return `${response.data.status}: article can't load`;
-    });
+  );
+
+  return artworks;
 };
