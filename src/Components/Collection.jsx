@@ -7,7 +7,7 @@ const Collection = ({ collection }) => {
       <div>
         {collection.map((artWork) => (
           <div key={artWork.id}>
-            <img src={artWork.image} alt={artWork.title} />
+            <img src={artWork.image} alt={artWork.title} width="200px" />
             <h3>{artWork.title}</h3>
           </div>
         ))}
