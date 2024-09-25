@@ -7,31 +7,56 @@ const RIJKSMUSEUM_API_BASE_URL = "https://www.rijksmuseum.nl/api/nl/collection";
 
 const RIJKSMUSEUM_API_KEY = "6vjE6xIR";
 
-export const searchMetArtworks = async (searchTerm) => {
-  const response = await axios.get(
-    `${MET_API_BASE_URL}/search?q=${searchTerm}`
-  );
-  const objectIDs = response.data.objectIDs?.slice(0, 10) || [];
+export const searchMetArtworks = async (
+  searchTerm,
+  page = 1,
+  itemsToDisplay = 10
+) => {
+  return axios
+    .get(`${MET_API_BASE_URL}/search?q=${searchTerm}`)
+    .then((response) => {
+      const objectIDs =
+        response.data.objectIDs?.slice(
+          (page - 1) * itemsToDisplay,
+          page * itemsToDisplay
+        ) || [];
 
-  const artworks = await Promise.all(
-    objectIDs.map(async (id) => {
-      const artworkResponse = await axios.get(
-        `${MET_API_BASE_URL}/objects/${id}`
+      return Promise.all(
+        objectIDs.map((id) =>
+          axios
+            .get(`${MET_API_BASE_URL}/objects/${id}`)
+            .then((artworkResponse) => {
+              const artWork = artworkResponse.data;
+              return artWork;
+            })
+        )
       );
-      return artworkResponse.data;
     })
-  );
-
-  return artworks;
+    .catch((error) => {
+      console.error("Error searching for MET artworks:", error);
+      return [];
+    });
 };
 
-export const searchRijksmuseumArtworks = async (searchTerm) => {
-  const response = await axios.get(RIJKSMUSEUM_API_BASE_URL, {
-    params: {
-      key: RIJKSMUSEUM_API_KEY,
-      q: searchTerm,
-      ps: 10,
-    },
-  });
-  return response.data.artObjects;
+export const searchRijksmuseumArtworks = (
+  searchTerm,
+  page = 1,
+  itemsPerPage = 10
+) => {
+  return axios
+    .get(`${RIJKSMUSEUM_API_BASE_URL}`, {
+      params: {
+        key: RIJKSMUSEUM_API_KEY,
+        q: searchTerm,
+        p: page,
+        ps: itemsPerPage,
+      },
+    })
+    .then((response) => {
+      return response.data.artObjects;
+    })
+    .catch((error) => {
+      console.error("Error searching for Rijksmuseum artworks:", error);
+      return [];
+    });
 };

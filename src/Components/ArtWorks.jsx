@@ -7,15 +7,31 @@ const ArtWorks = ({ addToCollection }) => {
   const [artWorks, setArtWorks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [moreItems, setMoreItems] = useState(true);
 
-  const handleSearch = () => {
+  const NumItemsDisplayed = 10;
+
+  const handleSearch = (isNewSearch = true) => {
+    if (isNewSearch) {
+      setArtWorks([]);
+      setPage(1);
+    }
     setLoading(true);
     setError(null);
 
-    Promise.all([searchMetArtworks(search), searchRijksmuseumArtworks(search)])
+    const currentPage = isNewSearch ? 1 : page;
+    const metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
+    const rijksSearch = searchRijksmuseumArtworks(
+      search,
+      currentPage,
+      NumItemsDisplayed
+    );
+
+    Promise.all([metSearch, rijksSearch])
       .then(([metResults, rijksResults]) => {
         // Combine the results from both APIs
-        const combinedArtworks = [
+        const combinedArtWorks = [
           ...metResults.map((artWork) => ({
             id: artWork.objectID,
             title: artWork.title,
@@ -31,8 +47,9 @@ const ArtWorks = ({ addToCollection }) => {
             api: "Rijks",
           })),
         ];
-
-        setArtWorks(combinedArtworks); // Set the combined results into state
+        if (combinedArtWorks.length === 0) setMoreItems(false);
+        setArtWorks((prevArtWorks) => [...prevArtWorks, ...combinedArtWorks]); // Set the combined results into state
+        setPage((previousPage) => previousPage + 1);
       })
       .catch((err) => {
         console.error("Failed to fetch artworks:", err);
@@ -66,6 +83,11 @@ const ArtWorks = ({ addToCollection }) => {
           />
         ))}
       </div>
+      {moreItems && artWorks.length > 0 && (
+        <button onClick={() => handleSearch(false)} disabled={loading}>
+          {loading ? "Loading..." : "Show More"}
+        </button>
+      )}
     </div>
   );
 };
