@@ -45,12 +45,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px; /* Space between grid items */
+  gap: 20px;
 }
 
 .artwork {
-  flex: 1 1 calc(25% - 20px); /* Each item takes up 25% of the row minus gap */
-  max-width: calc(25% - 20px); /* Ensure it doesn't grow larger than 25% */
+  flex: 1 1 calc(25% - 20px);
+  max-width: calc(25% - 20px);
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
@@ -62,4 +62,18 @@
   max-width: 100%;
   height: auto;
   margin-bottom: 10px;
+}
+
+.no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 80%;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  color: #010101;
+  font-size: 14px;
+  border-radius: 8px;
+  margin: 10px auto;
 }

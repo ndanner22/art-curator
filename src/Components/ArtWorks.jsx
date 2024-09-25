@@ -36,20 +36,20 @@ const ArtWorks = ({ addToCollection }) => {
           ...metResults.map((artWork) => ({
             id: artWork.objectID,
             title: artWork.title,
-            image: artWork.primaryImageSmall || "placeholder-image.jpg",
+            image: artWork.primaryImageSmall,
             artist: artWork.artistDisplayName || "Unknown Artist",
             api: "MET",
           })),
           ...rijksResults.map((artwork) => ({
             id: artwork.objectNumber,
             title: artwork.title,
-            image: artwork.webImage?.url || "placeholder-image.jpg",
+            image: artwork.webImage?.url,
             artist: artwork.principalOrFirstMaker || "Unknown Artist",
             api: "Rijks",
           })),
         ];
         if (combinedArtWorks.length === 0) setMoreItems(false);
-        setArtWorks((prevArtWorks) => [...prevArtWorks, ...combinedArtWorks]); // Set the combined results into state
+        setArtWorks((prevArtWorks) => [...prevArtWorks, ...combinedArtWorks]);
         setPage((previousPage) => previousPage + 1);
       })
       .catch((err) => {
@@ -57,7 +57,7 @@ const ArtWorks = ({ addToCollection }) => {
         setError("Failed to fetch artworks. Please try again.");
       })
       .finally(() => {
-        setLoading(false); // Stop the loading spinner when done
+        setLoading(false);
       });
   };
 
