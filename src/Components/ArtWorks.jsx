@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ArtPieceCard from "./ArtPieceCard";
 import { searchMetArtworks, searchRijksmuseumArtworks } from "../Utils/api";
+import "../App.css";
 
 const ArtWorks = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
@@ -74,7 +75,7 @@ const ArtWorks = ({ addToCollection }) => {
 
       {error && <p>{error}</p>}
 
-      <div>
+      <div className="art-grid">
         {artWorks.map((artWork) => (
           <ArtPieceCard
             key={artWork.objectID}

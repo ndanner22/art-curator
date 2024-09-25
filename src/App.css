@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+.art-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; /* Space between grid items */
+}
+
+.artwork {
+  flex: 1 1 calc(25% - 20px); /* Each item takes up 25% of the row minus gap */
+  max-width: calc(25% - 20px); /* Ensure it doesn't grow larger than 25% */
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.artwork img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
