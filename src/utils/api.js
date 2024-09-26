@@ -60,3 +60,57 @@ export const searchRijksmuseumArtworks = (
       return [];
     });
 };
+
+export const searchMetArtworksByType = async (
+  searchTerm,
+  page = 1,
+  itemsToDisplay = 10
+) => {
+  const validArtworks = [];
+
+  const fetchArtworks = async (page) => {
+    const response = await axios.get(
+      `${MET_API_BASE_URL}/search?q=${searchTerm}`
+    );
+    const objectIDs =
+      response.data.objectIDs?.slice(
+        (page - 1) * itemsToDisplay,
+        page * itemsToDisplay
+      ) || [];
+
+    const artworks = await Promise.all(
+      objectIDs.map((id) =>
+        axios
+          .get(`${MET_API_BASE_URL}/objects/${id}`)
+          .then((artworkResponse) => {
+            const artWork = artworkResponse.data;
+            if (
+              searchTerm &&
+              artWork.classification &&
+              artWork.classification.toLowerCase() === searchTerm.toLowerCase()
+            ) {
+              return artWork;
+            }
+            return null;
+          })
+      )
+    );
+
+    const filteredArtworks = artworks.filter(Boolean);
+    validArtworks.push(...filteredArtworks);
+
+    if (validArtworks.length < itemsToDisplay && objectIDs.length > 0) {
+      return fetchArtworks(page + 1);
+    }
+  };
+
+  try {
+    await fetchArtworks(page);
+  } catch (error) {
+    console.error("Error fetching artworks:", error);
+  }
+  // need to figure understand why the try catch block above lets the page continue functions, but the call below crashes it on certain searches. Was just a guess, ha
+  //await fetchArtworks(page); // Start fetching artworks
+
+  return validArtworks.slice(0, itemsToDisplay);
+};

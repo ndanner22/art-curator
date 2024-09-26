@@ -40,6 +40,7 @@ const ArtWorks = ({ addToCollection }) => {
             image: artWork.primaryImageSmall,
             artist: artWork.artistDisplayName || "Unknown Artist",
             api: "MET",
+            style: artWork.classification,
           })),
           ...rijksResults.map((artwork) => ({
             id: artwork.objectNumber,
@@ -47,6 +48,7 @@ const ArtWorks = ({ addToCollection }) => {
             image: artwork.webImage?.url,
             artist: artwork.principalOrFirstMaker || "Unknown Artist",
             api: "Rijks",
+            style: "Rijks",
           })),
         ];
         if (combinedArtWorks.length === 0) setMoreItems(false);
@@ -54,8 +56,8 @@ const ArtWorks = ({ addToCollection }) => {
         setPage((previousPage) => previousPage + 1);
       })
       .catch((err) => {
-        console.error("Failed to fetch artworks:", err);
-        setError("Failed to fetch artworks. Please try again.");
+        console.error("There was an error searching for your artworks:", err);
+        setError("Error searching for artworks. Please try again.");
       })
       .finally(() => {
         setLoading(false);
