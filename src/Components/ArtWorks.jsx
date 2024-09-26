@@ -5,6 +5,7 @@ import "../App.css";
 
 const ArtWorks = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
+  const [searchType, setSearchType] = useState("user");
   const [artWorks, setArtWorks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -63,13 +64,50 @@ const ArtWorks = ({ addToCollection }) => {
 
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search for art..."
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="user"
+            checked={searchType === "user"}
+            onChange={() => setSearchType("user")}
+          />
+          User Search
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="dropdown"
+            checked={searchType === "dropdown"}
+            onChange={() => setSearchType("dropdown")}
+          />
+          Art Type Search
+        </label>
+      </div>
+      {searchType === "user" && (
+        <div>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search for art..."
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      )}
+
+      {searchType === "dropdown" && (
+        <div>
+          <select>
+            <option value="">Select Art Type</option>
+            <option value="painting">Painting</option>
+            <option value="sculpture">Sculpture</option>
+            <option value="print">Print</option>
+            <option value="ceramics">Ceramics</option>
+          </select>
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      )}
 
       {loading && <p>Loading artworks...</p>}
 
