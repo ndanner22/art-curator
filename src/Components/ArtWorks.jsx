@@ -1,6 +1,11 @@
 import { useState } from "react";
 import ArtPieceCard from "./ArtPieceCard";
-import { searchMetArtworks, searchRijksmuseumArtworks } from "../Utils/api";
+import {
+  searchMetArtworks,
+  searchRijksmuseumArtworks,
+  searchMetArtworksByType,
+  searchRijksmuseumArtworksByType,
+} from "../Utils/api";
 import "../App.css";
 
 const ArtWorks = ({ addToCollection }) => {
@@ -23,12 +28,32 @@ const ArtWorks = ({ addToCollection }) => {
     setError(null);
 
     const currentPage = isNewSearch ? 1 : page;
-    const metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
-    const rijksSearch = searchRijksmuseumArtworks(
+    let metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
+    let rijksSearch = searchRijksmuseumArtworks(
       search,
       currentPage,
       NumItemsDisplayed
     );
+
+    if (searchType === "user") {
+      metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
+      rijksSearch = searchRijksmuseumArtworks(
+        search,
+        currentPage,
+        NumItemsDisplayed
+      );
+    } else {
+      metSearch = searchMetArtworksByType(
+        search,
+        currentPage,
+        NumItemsDisplayed
+      );
+      rijksSearch = searchRijksmuseumArtworksByType(
+        search,
+        currentPage,
+        NumItemsDisplayed
+      );
+    }
 
     Promise.all([metSearch, rijksSearch])
       .then(([metResults, rijksResults]) => {
@@ -72,7 +97,10 @@ const ArtWorks = ({ addToCollection }) => {
             type="radio"
             value="user"
             checked={searchType === "user"}
-            onChange={() => setSearchType("user")}
+            onChange={() => {
+              setSearchType("user");
+              setSearch("");
+            }}
           />
           User Search
         </label>
@@ -81,7 +109,10 @@ const ArtWorks = ({ addToCollection }) => {
             type="radio"
             value="dropdown"
             checked={searchType === "dropdown"}
-            onChange={() => setSearchType("dropdown")}
+            onChange={() => {
+              setSearchType("dropdown");
+              setSearch("");
+            }}
           />
           Art Type Search
         </label>
@@ -100,11 +131,11 @@ const ArtWorks = ({ addToCollection }) => {
 
       {searchType === "dropdown" && (
         <div>
-          <select>
+          <select onChange={(e) => setSearch(e.target.value)} value={search}>
             <option value="">Select Art Type</option>
-            <option value="painting">Painting</option>
-            <option value="sculpture">Sculpture</option>
-            <option value="print">Print</option>
+            <option value="paintings">Painting</option>
+            <option value="sculptures">Sculpture</option>
+            <option value="prints">Print</option>
             <option value="ceramics">Ceramics</option>
           </select>
           <button onClick={handleSearch}>Search</button>
