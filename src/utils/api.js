@@ -85,9 +85,11 @@ export const searchMetArtworksByType = async (
           .then((artworkResponse) => {
             const artWork = artworkResponse.data;
             if (
-              searchTerm &&
-              artWork.classification &&
-              artWork.classification.toLowerCase() === searchTerm.toLowerCase()
+              (searchTerm && artWork.classification === "") ||
+              (searchTerm &&
+                artWork.classification &&
+                artWork.classification.toLowerCase() ===
+                  searchTerm.toLowerCase())
             ) {
               return artWork;
             }
