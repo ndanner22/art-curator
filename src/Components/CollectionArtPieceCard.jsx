@@ -1,6 +1,6 @@
 const CollectionArtPieceCard = ({ artWork }) => {
   return (
-    <div className="collection-card">
+    <div className="collection">
       {artWork.image ? (
         <img src={artWork.image} alt={artWork.title} width="200px" />
       ) : (
