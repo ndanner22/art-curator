@@ -116,3 +116,26 @@ export const searchMetArtworksByType = async (
 
   return validArtworks.slice(0, itemsToDisplay);
 };
+
+export const searchRijksmuseumArtworksByType = (
+  type,
+  page = 1,
+  itemsPerPage = 10
+) => {
+  return axios
+    .get(`${RIJKSMUSEUM_API_BASE_URL}`, {
+      params: {
+        key: RIJKSMUSEUM_API_KEY,
+        type: type,
+        p: page,
+        ps: itemsPerPage,
+      },
+    })
+    .then((response) => {
+      return response.data.artObjects;
+    })
+    .catch((error) => {
+      console.error("Error searching for Rijksmuseum artworks:", error);
+      return [];
+    });
+};
