@@ -64,16 +64,18 @@ const ArtWorks = ({ addToCollection }) => {
             title: artWork.title,
             image: artWork.primaryImageSmall,
             artist: artWork.artistDisplayName || "Unknown Artist",
-            api: "MET",
-            style: artWork.classification,
+            api: "The MET New York City",
+            date: artWork.objectDate,
+            info: artWork.objectURL,
           })),
-          ...rijksResults.map((artwork) => ({
-            id: artwork.objectNumber,
-            title: artwork.title,
-            image: artwork.webImage?.url,
-            artist: artwork.principalOrFirstMaker || "Unknown Artist",
-            api: "Rijks",
-            style: "Rijks",
+          ...rijksResults.map((artWork) => ({
+            id: artWork.objectNumber,
+            title: artWork.title,
+            image: artWork.webImage?.url,
+            artist: artWork.principalOrFirstMaker || "Unknown Artist",
+            api: "The Rijksmuseum in Amsterdam",
+            //date: artWork.dating.presentingDate, - unable to locate the date of Rijks dates. It will take a second API call - will set up if time
+            info: artWork.links.web,
           })),
         ];
         if (combinedArtWorks.length === 0) setMoreItems(false);

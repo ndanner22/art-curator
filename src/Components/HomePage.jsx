@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Artworks from "./Artworks";
-import Collection from "./Collection";
+import Artworks from "./ArtWorksSearchPage";
+import Collection from "./CollectionPage";
 
 const HomePage = () => {
   const [collection, setCollection] = useState([]); // State to hold the artworks in the collection
