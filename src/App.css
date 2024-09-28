@@ -136,3 +136,22 @@
 .right-arrow {
   right: 0;
 }
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: auto;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s, border-color 0.3s;
+}
+
+.thumbnail.active {
+  border-color: #000;
+}

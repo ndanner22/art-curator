@@ -16,6 +16,9 @@ const Collection = ({ artworks }) => {
       prevIndex === artworks.length - 1 ? 0 : prevIndex + 1
     );
   };
+  const jumpToArtWork = (index) => {
+    setCurrentIndex(index);
+  };
 
   return (
     <div>
@@ -38,6 +41,17 @@ const Collection = ({ artworks }) => {
           </div>
         </div>
       )}
+      <div className="thumbnails">
+        {artworks.map((artWork, index) => (
+          <img
+            key={artWork.id}
+            src={artWork.image}
+            alt={artWork.title}
+            className={`thumbnail ${currentIndex === index ? "active" : ""}`}
+            onClick={() => jumpToArtWork(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
