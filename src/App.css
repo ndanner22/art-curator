@@ -63,24 +63,44 @@
 
 .collection-display {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   margin-bottom: 20px;
   padding: 5px;
   border: solid;
+  width: 600px;
+  height: 700px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.image-container {
+  max-width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .collection {
   text-align: center;
-  max-width: 500px;
+  max-width: 100%;
+  height: 100%;
 }
 
-.collection img {
+.image-container img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
   border: 1px solid #ccc;
-  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.collection-info {
+  text-align: center;
+  font-size: 0.9rem;
+  overflow: auto;
+  height: 40%;
 }
 
 .arrow {
@@ -106,6 +126,11 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  max-width: 100%;
+  width: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 auto;
 }
 
 .thumbnail {
