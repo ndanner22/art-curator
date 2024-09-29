@@ -8,6 +8,16 @@ import {
 } from "../Utils/api";
 import "../App.css";
 
+const rijksmuseumSearchType = {
+  paintings: "schilderij",
+  sculpture: "beeldhouwwerk",
+  basketry: "mand",
+  coins: "munt",
+  jewelry: "sieraad",
+  statue: "beeldhouwwerk",
+  books: "boek",
+};
+
 const ArtWorks = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
   const [searchType, setSearchType] = useState("user");
@@ -43,13 +53,15 @@ const ArtWorks = ({ addToCollection }) => {
         NumItemsDisplayed
       );
     } else {
+      const translatedArtType = rijksmuseumSearchType[search] || search;
+
       metSearch = searchMetArtworksByType(
         search,
         currentPage,
         NumItemsDisplayed
       );
       rijksSearch = searchRijksmuseumArtworksByType(
-        search,
+        translatedArtType,
         currentPage,
         NumItemsDisplayed
       );
@@ -67,6 +79,7 @@ const ArtWorks = ({ addToCollection }) => {
             api: "The MET New York City",
             date: artWork.objectDate,
             info: artWork.objectURL,
+            type: artWork.classification,
           })),
           ...rijksResults.map((artWork) => ({
             id: artWork.objectNumber,
@@ -136,9 +149,12 @@ const ArtWorks = ({ addToCollection }) => {
           <select onChange={(e) => setSearch(e.target.value)} value={search}>
             <option value="">Select Art Type</option>
             <option value="paintings">Painting</option>
-            <option value="sculptures">Sculpture</option>
-            <option value="prints">Print</option>
-            <option value="ceramics">Ceramics</option>
+            <option value="sculpture">Sculpture</option>
+            <option value="coins">Coins</option>
+            <option value="basketry">Basketry</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="statue">Statue</option>
+            <option value="books">Book</option>
           </select>
           <button onClick={handleSearch}>Search</button>
         </div>
