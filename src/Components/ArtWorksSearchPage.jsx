@@ -129,7 +129,7 @@ const ArtWorks = ({ addToCollection }) => {
               setSearch("");
             }}
           />
-          Art Type Search
+          Search by Type of Art
         </label>
       </div>
       {searchType === "user" && (
@@ -138,7 +138,7 @@ const ArtWorks = ({ addToCollection }) => {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search for art..."
+            placeholder="Manual search..."
           />
           <button onClick={handleSearch}>Search</button>
         </div>

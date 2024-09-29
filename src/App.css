@@ -183,3 +183,35 @@ body {
   color: #333;
   cursor: pointer;
 }
+
+input[type="text"],
+select {
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Garamond", serif;
+  margin-right: 10px;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #daa520;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #002147;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #daa520;
+}
