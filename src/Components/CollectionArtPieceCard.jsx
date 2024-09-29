@@ -3,7 +3,9 @@ const CollectionArtPieceCard = ({ artWork }) => {
     <div className="collection">
       {artWork.image ? (
         <div className="image-container">
-          <img src={artWork.image} alt={artWork.title} width="200px" />
+          <a href={artWork.image} target="_blank" rel="noopener noreferrer">
+            <img src={artWork.image} alt={artWork.title} width="200px" />
+          </a>
         </div>
       ) : (
         <div className="no-image">No Image Available 😔</div>
