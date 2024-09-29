@@ -1,10 +1,23 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import Artworks from "./ArtWorksSearchPage";
 import Collection from "./CollectionPage";
 
 const HomePage = () => {
   const [collection, setCollection] = useState([]);
+
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  };
 
   // function to check if the artwork is already in the collection
   const addToCollection = (artWork) => {
@@ -21,6 +34,7 @@ const HomePage = () => {
   };
   return (
     <Router>
+      <ScrollToTop />
       <div>
         <nav className="navbar">
           <Link to="/" className="nav-link">
