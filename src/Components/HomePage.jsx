@@ -22,9 +22,13 @@ const HomePage = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/collection">My Collection</Link>
+        <nav className="navbar">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/collection" className="nav-link">
+            My Collection
+          </Link>
         </nav>
         <Routes>
           <Route
