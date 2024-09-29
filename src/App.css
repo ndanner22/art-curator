@@ -168,3 +168,18 @@ body {
 .nav-link:hover {
   color: #daa520;
 }
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  font-family: "Garamond", serif;
+  color: #333;
+  cursor: pointer;
+}

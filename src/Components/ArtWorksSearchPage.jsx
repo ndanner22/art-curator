@@ -106,8 +106,8 @@ const ArtWorks = ({ addToCollection }) => {
 
   return (
     <div>
-      <div>
-        <label>
+      <div className="radio-group">
+        <label className="radio-label">
           <input
             type="radio"
             value="user"
@@ -119,7 +119,7 @@ const ArtWorks = ({ addToCollection }) => {
           />
           User Search
         </label>
-        <label>
+        <label className="radio-label">
           <input
             type="radio"
             value="dropdown"
