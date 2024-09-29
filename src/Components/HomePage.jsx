@@ -4,12 +4,21 @@ import Artworks from "./ArtWorksSearchPage";
 import Collection from "./CollectionPage";
 
 const HomePage = () => {
-  const [collection, setCollection] = useState([]); // State to hold the artworks in the collection
+  const [collection, setCollection] = useState([]);
 
-  const addToCollection = (artwork) => {
-    setCollection((prevCollection) => [...prevCollection, artwork]);
+  // function to check if the artwork is already in the collection
+  const addToCollection = (artWork) => {
+    const isAlreadyInCollection = collection.some(
+      (item) => item.id === artWork.id
+    );
+
+    if (isAlreadyInCollection) {
+      alert("This artwork is already in your collection.");
+    } else {
+      setCollection((prevCollection) => [...prevCollection, artWork]);
+      alert("Artwork added to your collection!");
+    }
   };
-
   return (
     <Router>
       <div>
