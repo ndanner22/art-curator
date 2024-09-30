@@ -38,6 +38,6 @@ You will need to install the following dependencies
 
 -Curated Collection: Save and manage your own curated collections of artwork.
 
--Responsive Design: Fully responsive design fordesktop.
+-Responsive Design: Fully responsive design fordesktop and mobile.
 
 -Fast Performance: Optimized for fast loading times and smooth navigation.
