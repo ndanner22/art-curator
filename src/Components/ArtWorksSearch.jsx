@@ -50,6 +50,11 @@ const ArtWorksSearch = ({ addToCollection }) => {
     setLoading(true);
     setError(null);
 
+    // Prevent user from performing search when dropdown menu is on 'Select Art Type'
+    if (searchType === "dropdown" && search === "") {
+      setLoading(false);
+      return; // Do not perform a search
+    }
     // Set the current page depending on if a new search or loading more
     const currentPage = isNewSearch ? 1 : page;
 
