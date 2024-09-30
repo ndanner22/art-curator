@@ -14,6 +14,14 @@ Run the following command in the command line:
 
 git clone https://github.com/ndanner22/art-curator.git
 
+cd art-curator
+
+npm install
+
+npm run dev
+
+npm run build
+
 ## Dependencies
 You will need to install the following dependencies
 
