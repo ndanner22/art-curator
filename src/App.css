@@ -239,3 +239,37 @@ button:hover {
   text-align: center;
   margin: 20px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .artwork {
+    flex: 1 1 calc(50% - 20px); /* 2 columns on small screens */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .artwork {
+    flex: 1 1 100%; /* Single column on very small screens */
+    max-width: 100%;
+  }
+
+  /* Adjust navbar height for smaller screens */
+  .navbar {
+    height: 60px;
+  }
+
+  /* Adjust font sizes */
+  .nav-link {
+    font-size: 16px;
+  }
+
+  input[type="text"],
+  select {
+    width: 80%; /* Full width on mobile */
+  }
+
+  button {
+    width: 80%; /* Full width on mobile */
+  }
+}
