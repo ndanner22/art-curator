@@ -5,9 +5,10 @@ import {
   searchRijksmuseumArtworks,
   searchMetArtworksByType,
   searchRijksmuseumArtworksByType,
-} from "../Utils/api";
+} from "../Utils/api"; // Import API functions for fetching art
 import "../App.css";
 
+// translate art types to Dutch for Rijksmuseum's type for search
 const rijksmuseumSearchType = {
   paintings: "schilderij",
   sculpture: "beeldhouwwerk",
@@ -19,25 +20,38 @@ const rijksmuseumSearchType = {
 };
 
 const ArtWorksSearch = ({ addToCollection }) => {
+  // State to hold user's search input
   const [search, setSearch] = useState("");
+  // State to manage the type of search
   const [searchType, setSearchType] = useState("user");
+  // State to store fetched artworks
   const [artWorks, setArtWorks] = useState([]);
+  // State to manage the loading during art search
   const [loading, setLoading] = useState(false);
+  // State to store any errors in search
   const [error, setError] = useState(null);
+  // State to track the current page of search results
   const [page, setPage] = useState(1);
+  // State to determine there are more items to load
   const [moreItems, setMoreItems] = useState(true);
 
+  // Limit of number of items to fetch during each independent API call
   const NumItemsDisplayed = 10;
 
+  // Function to handle searching for art - new or load more
   const handleSearch = (isNewSearch = true) => {
     if (isNewSearch) {
+      // Reset art and page number for new search
       setArtWorks([]);
       setPage(1);
     }
     setLoading(true);
     setError(null);
 
+    // Set the current page depending on if a new search or loading more
     const currentPage = isNewSearch ? 1 : page;
+
+    // Start search functions for MET and Rijksmuseum APIs
     let metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
     let rijksSearch = searchRijksmuseumArtworks(
       search,
@@ -45,6 +59,7 @@ const ArtWorksSearch = ({ addToCollection }) => {
       NumItemsDisplayed
     );
 
+    // If a user search, search API's using user's input
     if (searchType === "user") {
       metSearch = searchMetArtworks(search, currentPage, NumItemsDisplayed);
       rijksSearch = searchRijksmuseumArtworks(
@@ -53,6 +68,7 @@ const ArtWorksSearch = ({ addToCollection }) => {
         NumItemsDisplayed
       );
     } else {
+      // Else, translate type to Ductch for Rijksmuseum search and search APIs by type
       const translatedArtType = rijksmuseumSearchType[search] || search;
 
       metSearch = searchMetArtworksByType(
@@ -67,9 +83,11 @@ const ArtWorksSearch = ({ addToCollection }) => {
       );
     }
 
+    // Handle the result from both MET and Rijksmuseum
     Promise.all([metSearch, rijksSearch])
       .then(([metResults, rijksResults]) => {
         // Combine the results from both APIs
+        // Format results from both APIs
         const combinedArtWorks = [
           ...metResults.map((artWork) => ({
             id: artWork.objectID,
@@ -91,8 +109,11 @@ const ArtWorksSearch = ({ addToCollection }) => {
             info: artWork.links.web,
           })),
         ];
+        // Check if to see if no results were returned
         if (combinedArtWorks.length === 0) setMoreItems(false);
+        // Append new artworks to the previous list
         setArtWorks((prevArtWorks) => [...prevArtWorks, ...combinedArtWorks]);
+        // Increment the page number for future "Show More" requests
         setPage((previousPage) => previousPage + 1);
       })
       .catch((err) => {
@@ -100,12 +121,13 @@ const ArtWorksSearch = ({ addToCollection }) => {
         setError("Error searching for artworks. Please try again.");
       })
       .finally(() => {
-        setLoading(false);
+        setLoading(false); // Turn off loading once data has been fetched
       });
   };
 
   return (
     <div>
+      {/* Radio buttons to toggle between User Search and Search by Art Type */}
       <div className="radio-group">
         <label className="radio-label">
           <input
@@ -113,8 +135,8 @@ const ArtWorksSearch = ({ addToCollection }) => {
             value="user"
             checked={searchType === "user"}
             onChange={() => {
-              setSearchType("user");
-              setSearch("");
+              setSearchType("user"); // Set search type to "user" when selected
+              setSearch(""); // Clear search input when changed
             }}
           />
           User Search
@@ -125,25 +147,26 @@ const ArtWorksSearch = ({ addToCollection }) => {
             value="dropdown"
             checked={searchType === "dropdown"}
             onChange={() => {
-              setSearchType("dropdown");
-              setSearch("");
+              setSearchType("dropdown"); // Set search type to "dropdown" when selected
+              setSearch(""); // Clear search input when changed
             }}
           />
           Search by Type of Art
         </label>
       </div>
+      {/* Render input field for manual search if user search is selected */}
       {searchType === "user" && (
         <div>
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)} // Update search term
             placeholder="Manual search..."
           />
           <button onClick={handleSearch}>Search</button>
         </div>
       )}
-
+      {/* Render dropdown for search by art type if art type search is selected */}
       {searchType === "dropdown" && (
         <div>
           <select onChange={(e) => setSearch(e.target.value)} value={search}>
@@ -160,19 +183,22 @@ const ArtWorksSearch = ({ addToCollection }) => {
         </div>
       )}
 
+      {/* Display loading message while searching */}
       {loading && <p>Loading artworks...</p>}
-
+      {/* Display any error that occurred during search */}
       {error && <p>{error}</p>}
 
+      {/* Display the list of found art */}
       <div className="art-grid">
         {artWorks.map((artWork) => (
           <ArtPieceCard
             key={artWork.objectID}
-            artWork={artWork}
-            addToCollection={addToCollection}
+            artWork={artWork} // Pass art data to the card component
+            addToCollection={addToCollection} // Pass function to add art to user's collection
           />
         ))}
       </div>
+      {/* Show 'Load More' button if there are more items to display */}
       {moreItems && artWorks.length > 0 && (
         <button onClick={() => handleSearch(false)} disabled={loading}>
           {loading ? "Loading..." : "Show More"}
