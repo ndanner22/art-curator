@@ -9,7 +9,6 @@ const ArtPieceCard = ({ artWork, addToCollection }) => {
       )}
       <h3>{artWork.title}</h3>
       <p>Artist: {artWork.artist}</p>
-      <p>Museum: {artWork.api}</p>
       {/* Button to add the piece of art to user's collection, calling 'addToCollection' function */}
       <button onClick={() => addToCollection(artWork)}>
         Add to Collection

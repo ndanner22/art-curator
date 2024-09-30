@@ -97,7 +97,7 @@ const ArtWorksSearch = ({ addToCollection }) => {
             image: artWork.primaryImageSmall,
             artist: artWork.artistDisplayName || "Unknown Artist",
             api: "The MET New York City",
-            date: artWork.objectDate,
+            date: artWork.objectDate || "Date not Found",
             info: artWork.objectURL,
             type: artWork.classification,
           })),
@@ -107,7 +107,7 @@ const ArtWorksSearch = ({ addToCollection }) => {
             image: artWork.webImage?.url,
             artist: artWork.principalOrFirstMaker || "Unknown Artist",
             api: "The Rijksmuseum in Amsterdam",
-            //date: artWork.dating.presentingDate, - unable to locate the date of Rijks dates. It will take a second API call - will set up if time
+            date: "Date not Found", //unable to locate the date of Rijks dates. It will take a second API call - will set up if time
             info: artWork.links.web,
           })),
         ];
