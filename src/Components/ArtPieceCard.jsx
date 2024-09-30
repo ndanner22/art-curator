@@ -1,6 +1,7 @@
 const ArtPieceCard = ({ artWork, addToCollection }) => {
   return (
     <div className="artwork">
+      {/* Display the image if available, else show fallback message */}
       {artWork.image ? (
         <img src={artWork.image} alt={artWork.title} width="200px" />
       ) : (
@@ -9,7 +10,7 @@ const ArtPieceCard = ({ artWork, addToCollection }) => {
       <h3>{artWork.title}</h3>
       <p>Artist: {artWork.artist}</p>
       <p>Museum: {artWork.api}</p>
-      <p>{artWork.type}</p>
+      {/* Button to add the piece of art to user's collection, calling 'addToCollection' function */}
       <button onClick={() => addToCollection(artWork)}>
         Add to Collection
       </button>
