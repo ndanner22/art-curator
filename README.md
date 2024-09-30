@@ -26,3 +26,7 @@ npm run build
 You will need to install the following dependencies
 
 [Node.js](https://nodejs.org/en) - version 20.9.0
+
+[Axios](https://axios-http.com)
+
+[React-Router-Dom](https://reactrouter.com/en/main)
