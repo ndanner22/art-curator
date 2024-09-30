@@ -13,3 +13,8 @@ Navigate to directory where you want to store the project
 Run the following command in the command line:
 
 git clone https://github.com/ndanner22/art-curator.git
+
+## Dependencies
+You will need to install the following dependencies
+
+[Node.js](https://nodejs.org/en) - version 20.9.0
