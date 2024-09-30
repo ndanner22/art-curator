@@ -1,1 +1,1 @@
-## Link to live version: [https://art-curator.netlify.app]
+## Link to live version: https://art-curator.netlify.app
