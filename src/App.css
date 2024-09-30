@@ -246,6 +246,17 @@ button:hover {
     flex: 1 1 calc(50% - 20px); /* 2 columns on small screens */
     max-width: calc(50% - 20px);
   }
+  .collection-display {
+    width: 90%; /* Make the collection display take more width */
+    height: auto; /* Let the height adjust dynamically */
+    padding: 10px;
+  }
+
+  /* Adjust text sizes in collection info */
+  .collection-info {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -271,5 +282,20 @@ button:hover {
 
   button {
     width: 80%; /* Full width on mobile */
+  }
+  .no-image {
+    width: 100%; /* Make no-image box full width */
+  }
+
+  /* Ensure thumbnails stack properly */
+  .thumbnails {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .thumbnail {
+    width: 60px; /* Adjust thumbnail size for smaller screens */
+    height: 80px;
   }
 }
