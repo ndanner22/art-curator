@@ -129,6 +129,19 @@ const ArtWorksSearch = ({ addToCollection }) => {
 
   return (
     <div>
+      <div className="intro-text">
+        <h1>Welcome to the Art Gallery</h1>
+        <p>
+          Discover and explore a wide range of artworks from renowned museums
+          around the world. Use the search feature to find your favorite pieces
+          or browse by type of art.
+        </p>
+        <p>
+          Once you find an artwork you love, you can easily add it to your
+          personal collection for future reference. Navigate through your
+          collection and enjoy your curated selection of art!
+        </p>
+      </div>
       {/* Radio buttons to toggle between User Search and Search by Art Type */}
       <div className="radio-group">
         <label className="radio-label">
