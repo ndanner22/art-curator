@@ -298,4 +298,9 @@ button:hover {
     width: 60px; /* Adjust thumbnail size for smaller screens */
     height: 80px;
   }
+
+  .arrow {
+    font-size: 2rem; /* Slightly smaller on very small screens */
+    padding: 8px; /* Adjust padding */
+  }
 }
