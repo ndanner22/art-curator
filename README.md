@@ -33,7 +33,11 @@ You will need to install the following dependencies
 
 ## Features
 -Artwork Search: Easily search for artworks by title, artist, or collection.
+
 -Artwork Details: View detailed information about each artwork.
+
 -Curated Collection: Save and manage your own curated collections of artwork.
+
 -Responsive Design: Fully responsive design fordesktop.
+
 -Fast Performance: Optimized for fast loading times and smooth navigation.
