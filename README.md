@@ -1,8 +1,43 @@
-# React + Vite
+## Link to live version: https://art-curator.netlify.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Summary
 
-Currently, two official plugins are available:
+Art Curator is a web application that allows users to explore, search, and curate artworks from two APIs, The MET and Rijksmuseum collections. Built with React and Vite, it provides a seamless, interactive user experience for art enthusiasts, collectors, and researchers alike. The app fetches data from the public APIs to display a diverse range of artworks and their details, empowering users to discover and organize their favorite pieces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Local Use
+You will need to clone the repository to your local machine. Follow the below:
+
+Open your terminal
+
+Navigate to directory where you want to store the project
+Run the following command in the command line:
+
+git clone https://github.com/ndanner22/art-curator.git
+
+cd art-curator
+
+npm install
+
+npm run dev
+
+npm run build
+
+## Dependencies
+You will need to install the following dependencies
+
+[Node.js](https://nodejs.org/en) - version 20.9.0
+
+[Axios](https://axios-http.com)
+
+[React-Router-Dom](https://reactrouter.com/en/main)
+
+## Features
+-Artwork Search: Easily search for artworks by title, artist, or collection.
+
+-Artwork Details: View detailed information about each artwork.
+
+-Curated Collection: Save and manage your own curated collections of artwork.
+
+-Responsive Design: Fully responsive design fordesktop.
+
+-Fast Performance: Optimized for fast loading times and smooth navigation.
