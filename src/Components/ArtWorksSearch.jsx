@@ -7,7 +7,7 @@ import {
   searchRijksmuseumArtworks,
   searchMetArtworksByType,
   searchRijksmuseumArtworksByType,
-} from "../Utils/api"; // Import API functions for fetching art
+} from "../Utils/api.js"; // Import API functions for fetching art
 import "../App.css";
 
 // translate art types to Dutch for Rijksmuseum's type for search
