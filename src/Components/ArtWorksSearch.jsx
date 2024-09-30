@@ -18,7 +18,7 @@ const rijksmuseumSearchType = {
   books: "boek",
 };
 
-const ArtWorks = ({ addToCollection }) => {
+const ArtWorksSearch = ({ addToCollection }) => {
   const [search, setSearch] = useState("");
   const [searchType, setSearchType] = useState("user");
   const [artWorks, setArtWorks] = useState([]);
@@ -182,4 +182,4 @@ const ArtWorks = ({ addToCollection }) => {
   );
 };
 
-export default ArtWorks;
+export default ArtWorksSearch;
