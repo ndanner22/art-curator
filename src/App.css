@@ -301,6 +301,6 @@ button:hover {
 
   .arrow {
     font-size: 2rem; /* Slightly smaller on very small screens */
-    padding: 8px; /* Adjust padding */
+    padding: 5px;
   }
 }
