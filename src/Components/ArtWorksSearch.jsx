@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ArtPieceCard from "./ArtPieceCard";
 import Loading from "./Loading";
+import Error from "./Error";
 import {
   searchMetArtworks,
   searchRijksmuseumArtworks,
@@ -186,8 +187,8 @@ const ArtWorksSearch = ({ addToCollection }) => {
 
       {/* Use the Loading component to show loading if currently loading */}
       {loading && <Loading />}
-      {/* Display any error that occurred during search */}
-      {error && <p>{error}</p>}
+      {/* Display any error that occurred during search using Error Component*/}
+      {error && <Error message={error} />}
 
       {/* Display the list of found art */}
       <div className="art-grid">
