@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ArtPieceCard from "./ArtPieceCard";
+import Loading from "./Loading";
 import {
   searchMetArtworks,
   searchRijksmuseumArtworks,
@@ -183,8 +184,8 @@ const ArtWorksSearch = ({ addToCollection }) => {
         </div>
       )}
 
-      {/* Display loading message while searching */}
-      {loading && <p>Loading artworks...</p>}
+      {/* Use the Loading component to show loading if currently loading */}
+      {loading && <Loading />}
       {/* Display any error that occurred during search */}
       {error && <p>{error}</p>}
 
@@ -201,7 +202,7 @@ const ArtWorksSearch = ({ addToCollection }) => {
       {/* Show 'Load More' button if there are more items to display */}
       {moreItems && artWorks.length > 0 && (
         <button onClick={() => handleSearch(false)} disabled={loading}>
-          {loading ? "Loading..." : "Show More"}
+          {loading ? <Loading /> : "Show More"}
         </button>
       )}
     </div>
