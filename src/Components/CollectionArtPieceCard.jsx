@@ -10,9 +10,7 @@ const CollectionArtPieceCard = ({ artWork }) => {
           </a>
         </div>
       ) : (
-        {
-          /* Provide a link to more detailed information about the artwork */
-        }(<div className="no-image">No Image Available 😔</div>)
+        <div className="no-image">No Image Available 😔</div>
       )}
       <div className="collection-info">
         <h3>{artWork.title}</h3>
@@ -20,10 +18,14 @@ const CollectionArtPieceCard = ({ artWork }) => {
         <p>Museum: {artWork.api}</p>
         <p>Date: {artWork.date}</p>
         <p>Location of piece: {artWork.api}</p>
-        {/* Provide a link to more detailed information about the artwork */}
-        <a href={artWork.info} target="_blank" rel="noopener noreferrer">
-          More Information
-        </a>
+        {/* Provide a link to more detailed information if it exists */}
+        {artWork.info ? (
+          <a href={artWork.info} target="_blank" rel="noopener noreferrer">
+            More Info
+          </a>
+        ) : (
+          <p>No additional information available</p>
+        )}
       </div>
     </div>
   );
