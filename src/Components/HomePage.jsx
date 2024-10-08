@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import {
   BrowserRouter as Router,
   Route,
@@ -29,11 +30,11 @@ const HomePage = () => {
     );
 
     if (isAlreadyInCollection) {
-      alert("This artwork is already in your collection."); // Notify user if piece of art already in collection
+      toast.info("This artwork is already in your collection."); // Notify user if piece of art already in collection
     } else {
       // If not already in collection, add to collection and notify user of addition
       setCollection((prevCollection) => [...prevCollection, artWork]);
-      alert("Artwork added to your collection!");
+      toast.success("Artwork added to your collection!");
     }
   };
   return (
