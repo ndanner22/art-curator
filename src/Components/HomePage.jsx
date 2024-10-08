@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import {
   BrowserRouter as Router,
@@ -17,9 +17,13 @@ const HomePage = () => {
   // Custom hook to ensure the pages scrolls back to top when the user navigates to them
   const ScrollToTop = () => {
     const { pathname } = useLocation(); // Extract the current pathname from react-router-dom
+    const prevPathnameRef = useRef(pathname); // Variable to track the previous pathname
     useEffect(() => {
       // Effect so that when the pathname changes it scrolls to the top of the page
-      window.scrollTo(0, 0);
+      if (pathname !== prevPathnameRef.current) {
+        window.scrollTo(0, 0);
+        prevPathnameRef.current = pathname; //Update ref variable to the current pathname
+      }
     }, [pathname]); // Array to ensure this runs when the path changes
   };
 
