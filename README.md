@@ -12,15 +12,15 @@ Open your terminal
 Navigate to directory where you want to store the project
 Run the following command in the command line:
 
-git clone https://github.com/ndanner22/art-curator.git
-
-cd art-curator
-
-npm install
-
-npm run dev
-
-npm run build
+`git clone https://github.com/ndanner22/art-curator.git`
+  then
+`cd art-curator`
+  then
+`npm install`
+  then
+`npm run dev`
+  then
+`npm run build`
 
 ## Dependencies
 You will need to install the following dependencies
