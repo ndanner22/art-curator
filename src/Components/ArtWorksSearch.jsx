@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ArtPieceCard from "./ArtPieceCard";
 import Loading from "./Loading";
 import Error from "./Error";
@@ -9,8 +9,9 @@ import {
   searchRijksmuseumArtworksByType,
 } from "../utils/api.js"; // Import API functions for fetching art
 import "../App.css";
+import { SearchContext } from "./SearchContext"; // Import SearchContext to access global search states
 
-// translate art types to Dutch for Rijksmuseum's type for search
+// Translate art types to Dutch for Rijksmuseum's type for search
 const rijksmuseumSearchType = {
   paintings: "schilderij",
   sculpture: "beeldhouwwerk",
@@ -22,13 +23,17 @@ const rijksmuseumSearchType = {
 };
 
 const ArtWorksSearch = ({ addToCollection }) => {
-  // State to hold user's search input
-  const [search, setSearch] = useState("");
-  // State to manage the type of search
-  const [searchType, setSearchType] = useState("user");
-  // State to store fetched artworks
-  const [artWorks, setArtWorks] = useState([]);
-  // State to manage the loading during art search
+  // Destructure global state values from SearchContext using useContext
+  const {
+    search,
+    setSearch,
+    searchType,
+    setSearchType,
+    artWorks,
+    setArtWorks,
+  } = useContext(SearchContext);
+
+  //State to manage the loading during art search
   const [loading, setLoading] = useState(false);
   // State to store any errors in search
   const [error, setError] = useState(null);
