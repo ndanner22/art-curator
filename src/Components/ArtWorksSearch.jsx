@@ -137,6 +137,15 @@ const ArtWorksSearch = ({ addToCollection }) => {
       });
   };
 
+  // Function to reset/clear the current search
+  const clearSearch = () => {
+    setSearch(""); // Clear the search term
+    setSearchType("user"); // Reset search type to default
+    setArtWorks([]); // Clear any currently displayed artworks
+    setPage(1); // Reset the page number to default
+    setMoreItems(true); // Reset the 'moreItems' to default
+  };
+
   return (
     <div>
       <div className="intro-text">
@@ -152,67 +161,68 @@ const ArtWorksSearch = ({ addToCollection }) => {
           collection and enjoy your curated selection of art!
         </p>
       </div>
-      {/* Radio buttons to toggle between User Search and Search by Art Type */}
-      <div className="radio-group">
-        <label className="radio-label">
-          <input
-            type="radio"
-            value="user"
-            checked={searchType === "user"}
-            onChange={() => {
-              setSearchType("user"); // Set search type to "user" when selected
-              setSearch(""); // Clear search input when changed
-            }}
-          />
-          User Search
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            value="dropdown"
-            checked={searchType === "dropdown"}
-            onChange={() => {
-              setSearchType("dropdown"); // Set search type to "dropdown" when selected
-              setSearch(""); // Clear search input when changed
-            }}
-          />
-          Search by Type of Art
-        </label>
+      <div className="search-container">
+        {/* Radio buttons to toggle between User Search and Search by Art Type */}
+        <div className="radio-group">
+          <label className="radio-label">
+            <input
+              type="radio"
+              value="user"
+              checked={searchType === "user"}
+              onChange={() => {
+                setSearchType("user"); // Set search type to "user" when selected
+                setSearch(""); // Clear search input when changed
+              }}
+            />
+            User Search
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              value="dropdown"
+              checked={searchType === "dropdown"}
+              onChange={() => {
+                setSearchType("dropdown"); // Set search type to "dropdown" when selected
+                setSearch(""); // Clear search input when changed
+              }}
+            />
+            Search by Type of Art
+          </label>
+        </div>
+        {/* Render input field for manual search if user search is selected */}
+        {searchType === "user" && (
+          <div>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)} // Update search term
+              placeholder="Manual search..."
+            />
+            <button onClick={handleSearch}>Search</button>
+          </div>
+        )}
+        {/* Render dropdown for search by art type if art type search is selected */}
+        {searchType === "dropdown" && (
+          <div>
+            <select onChange={(e) => setSearch(e.target.value)} value={search}>
+              <option value="">Select Art Type</option>
+              <option value="paintings">Painting</option>
+              <option value="sculpture">Sculpture</option>
+              <option value="coins">Coins</option>
+              <option value="basketry">Basketry</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="statue">Statue</option>
+              <option value="books">Book</option>
+            </select>
+            <button onClick={handleSearch}>Search</button>
+          </div>
+        )}
+        <button onClick={clearSearch}>Clear Search</button> {/* Clear button */}
       </div>
-      {/* Render input field for manual search if user search is selected */}
-      {searchType === "user" && (
-        <div>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)} // Update search term
-            placeholder="Manual search..."
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
-      )}
-      {/* Render dropdown for search by art type if art type search is selected */}
-      {searchType === "dropdown" && (
-        <div>
-          <select onChange={(e) => setSearch(e.target.value)} value={search}>
-            <option value="">Select Art Type</option>
-            <option value="paintings">Painting</option>
-            <option value="sculpture">Sculpture</option>
-            <option value="coins">Coins</option>
-            <option value="basketry">Basketry</option>
-            <option value="jewelry">Jewelry</option>
-            <option value="statue">Statue</option>
-            <option value="books">Book</option>
-          </select>
-          <button onClick={handleSearch}>Search</button>
-        </div>
-      )}
-
       {/* Use the Loading component to show loading if currently loading */}
       {loading && <Loading />}
       {/* Display any error that occurred during search using Error Component*/}
       {error && <Error message={error} />}
-
       {/* Display the list of found art */}
       <div className="art-grid">
         {artWorks.map((artWork) => (
