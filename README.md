@@ -61,4 +61,3 @@ This web application uses the following public APIs:
 
 1. [The MET API](https://metmuseum.github.io)
 2. [The Rijksmuseum API](https://data.rijksmuseum.nl/user-generated-content/api/)
-](https://data.rijksmuseum.nl/user-generated-content/api/)
