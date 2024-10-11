@@ -6,50 +6,54 @@
 
 **Art Curator** is a web application that allows users to explore, search, and curate artworks from two APIs, The MET and Rijksmuseum collections. Built with React and Vite, it provides a seamless, interactive user experience for art enthusiasts, collectors, and researchers alike. The app fetches data from the public APIs to display a diverse range of artworks and their details, empowering users to discover and organize their favorite pieces.
 
+## Features
+-**Artwork Search:** Easily search for artworks by title, artist, or collection.
+
+-**Artwork Details:** View detailed information about each artwork.
+
+-**Curated Collection:** Save and manage your own curated collections of artwork.
+
+-**Responsive Design:** Fully responsive design fordesktop and mobile.
+
+-**Fast Performance:** Built with Vite and optimized for fast loading times and smooth navigation.
+
 ## Local Use
-You will need to clone the repository to your local machine. Follow the below:
 
-Open your terminal
+###Node.js is a prerequisite for running this repo
 
-Navigate to directory where you want to store the project
+To run this repo locally, clone the repository and follow the below steps:
+
+1. Open your terminal and navigate to directory where you want to store the project
+
 Run the following command in the command line:
 
 `git clone https://github.com/ndanner22/art-curator.git`
 
-  then
+2. Move into the project directory by running
   
 `cd art-curator`
   
-  then
+3. Install the dependices by running
   
 `npm install`
   
-  then
+4. Start the development server
   
 `npm run dev`
   
-  then
+5. For a production build run the below
   
 `npm run build`
 
 ## Dependencies
-You will need to install the following dependencies
+The project uses the following dependencies:
 
 [Node.js](https://nodejs.org/en) - version 20.9.0
 
-[Axios](https://axios-http.com)
+[Axios](https://axios-http.com) for API requests
 
-[React-Router-Dom](https://reactrouter.com/en/main)
+[React-Router-Dom](https://reactrouter.com/en/main) for navigation
 
-[React-Toastify](https://www.npmjs.com/package/react-toastify)
+[React-Toastify](https://www.npmjs.com/package/react-toastify) for in-page notifications
 
-## Features
--Artwork Search: Easily search for artworks by title, artist, or collection.
 
--Artwork Details: View detailed information about each artwork.
-
--Curated Collection: Save and manage your own curated collections of artwork.
-
--Responsive Design: Fully responsive design fordesktop and mobile.
-
--Fast Performance: Optimized for fast loading times and smooth navigation.
