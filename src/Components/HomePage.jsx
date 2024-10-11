@@ -61,10 +61,12 @@ const HomePage = () => {
             path="/"
             element={<ArtWorksSearch addToCollection={addToCollection} />}
           />
-          {/* Collection page route with user's collection passed as a prop */}
+          {/* Collection page route with user's collection passed as a prop and function to set the collection as a prop*/}
           <Route
             path="/collection"
-            element={<Collection artworks={collection} />}
+            element={
+              <Collection artworks={collection} setCollection={setCollection} />
+            }
           />
         </Routes>
       </div>

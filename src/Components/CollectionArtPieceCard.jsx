@@ -1,4 +1,4 @@
-const CollectionArtPieceCard = ({ artWork }) => {
+const CollectionArtPieceCard = ({ artWork, removeFromCollection }) => {
   return (
     <div className="collection">
       {/* Conditionally render the image section of the art */}
@@ -26,6 +26,14 @@ const CollectionArtPieceCard = ({ artWork }) => {
         ) : (
           <p>No additional information available</p>
         )}
+        <br />
+        {/* Button to remove piece of art from collection*/}
+        <button
+          className="remove-button"
+          onClick={() => removeFromCollection(artWork.id)}
+        >
+          Remove from Collection
+        </button>
       </div>
     </div>
   );

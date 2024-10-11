@@ -2,7 +2,7 @@ import { useState } from "react";
 import CollectionArtPieceCard from "./CollectionArtPieceCard";
 import "../App.css";
 
-const Collection = ({ artworks }) => {
+const Collection = ({ artworks, setCollection }) => {
   // State to track the index of the currently displayed artwork. This is for the display 'carousel'
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -25,6 +25,14 @@ const Collection = ({ artworks }) => {
     setCurrentIndex(index);
   };
 
+  // Function to remove a spefic piece of art from the collection by it's id
+  const removeFromCollection = (artworkId) => {
+    const updatedArtworks = artworks.filter(
+      (artwork) => artwork.id !== artworkId
+    );
+    setCollection(updatedArtworks);
+  };
+
   return (
     <div>
       <h2>Your Personal Collection!</h2>
@@ -39,10 +47,14 @@ const Collection = ({ artworks }) => {
             <button onClick={prevArtWork} className="arrow left-arrow">
               ◀
             </button>
-            {/* Display currently selected piece of art using the CollectionArtPieceCard component and pass it the current piece of art as a prop*/}
+            {/* Display currently selected piece of art using the CollectionArtPieceCard component and pass it the current piece of art as a prop and pass the removeFromCollection function*/}
             {artworks[currentIndex] && (
-              <CollectionArtPieceCard artWork={artworks[currentIndex]} />
+              <CollectionArtPieceCard
+                artWork={artworks[currentIndex]}
+                removeFromCollection={removeFromCollection}
+              />
             )}
+            <br />
             <button onClick={nextArtWork} className="arrow right-arrow">
               ▶
             </button>

@@ -70,9 +70,10 @@ p {
   margin-bottom: 20px;
   padding: 5px;
   width: 650px;
-  height: 800px;
+  height: 890px;
   box-sizing: border-box;
   overflow: hidden;
+  line-height: 1.1;
 }
 
 /*  Ensures images are centered and fit within the display box */
@@ -251,6 +252,10 @@ button:hover {
   align-items: center;
   gap: 10px; /* Add spacing between elements */
   margin-bottom: 20px;
+}
+
+.remove-button {
+  margin-top: 15px;
 }
 
 /* Responsive adjustments */
