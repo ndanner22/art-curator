@@ -199,6 +199,12 @@ const ArtWorksSearch = ({ addToCollection }) => {
               value={search}
               onChange={(e) => setSearch(e.target.value)} // Update search term
               placeholder="Manual search..."
+              // Trigger handleSearch when the user press the enter key down while their focus area is inside the manual search input
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
             <button onClick={handleSearch}>Search</button>
           </div>
@@ -206,7 +212,16 @@ const ArtWorksSearch = ({ addToCollection }) => {
         {/* Render dropdown for search by art type if art type search is selected */}
         {searchType === "dropdown" && (
           <div>
-            <select onChange={(e) => setSearch(e.target.value)} value={search}>
+            <select
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              // Trigger handleSearch when the user press the enter key down while their focus area is inside the dropdown search input
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+            >
               <option value="">Select Art Type</option>
               <option value="paintings">Painting</option>
               <option value="sculpture">Sculpture</option>
