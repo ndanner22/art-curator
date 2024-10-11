@@ -39,6 +39,8 @@ You will need to install the following dependencies
 
 [React-Router-Dom](https://reactrouter.com/en/main)
 
+[React-Toastify](https://www.npmjs.com/package/react-toastify)
+
 ## Features
 -Artwork Search: Easily search for artworks by title, artist, or collection.
 
