@@ -106,19 +106,21 @@ const ArtWorksSearch = ({ addToCollection }) => {
             title: artWork.title,
             image: artWork.primaryImageSmall,
             artist: artWork.artistDisplayName || "Unknown Artist",
-            api: "The MET New York City",
+            api: "The MET",
             date: artWork.objectDate || "Date not Found",
             info: artWork.objectURL,
             type: artWork.classification,
+            location: "The MET Museum in New York City",
           })),
           ...rijksResults.map((artWork) => ({
             id: artWork.objectNumber,
             title: artWork.title,
             image: artWork.webImage?.url,
             artist: artWork.principalOrFirstMaker || "Unknown Artist",
-            api: "The Rijksmuseum in Amsterdam",
+            api: "The Rijksmuseum",
             date: "Date not Found", //unable to locate the date of Rijks dates. It will take a second API call - will set up if time
             info: artWork.links.web,
+            location: "The Rijksmuseum in Amsterdam",
           })),
         ];
         // Check if to see if no results were returned

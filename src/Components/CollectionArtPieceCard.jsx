@@ -17,7 +17,7 @@ const CollectionArtPieceCard = ({ artWork }) => {
         <p>Artist: {artWork.artist}</p>
         <p>Museum: {artWork.api}</p>
         <p>Date: {artWork.date}</p>
-        <p>Location of piece: {artWork.api}</p>
+        <p>Location of piece: {artWork.location}</p>
         {/* Provide a link to more detailed information if it exists */}
         {artWork.info ? (
           <a href={artWork.info} target="_blank" rel="noopener noreferrer">
