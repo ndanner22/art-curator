@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="app">
       <HomePage />
-      {/*Set ToastContainer to bottom right of page and have it close after 3 seconds*/}
-      <ToastContainer position="bottom-right" autoClose={3000} />
+      {/*Set ToastContainer to bottom right of page and have it close after 2 seconds*/}
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
 }
