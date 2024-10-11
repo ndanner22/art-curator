@@ -13,7 +13,7 @@
 
 -**Curated Collection:** Save and manage your own curated collections of artwork.
 
--**Responsive Design:** Fully responsive design fordesktop and mobile.
+-**Responsive Design:** Fully responsive design for desktop and mobile.
 
 -**Fast Performance:** Built with Vite and optimized for fast loading times and smooth navigation.
 
