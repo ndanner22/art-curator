@@ -4,7 +4,7 @@
 
 ## Summary
 
-**Art Curator** is a web application that allows users to explore, search, and curate artworks from two APIs, The MET and Rijksmuseum collections. Built with React and Vite, it provides a seamless, interactive user experience for art enthusiasts, collectors, and researchers alike. The app fetches data from the public APIs to display a diverse range of artworks and their details, empowering users to discover and organize their favorite pieces.
+**Art Curator** is a web application that allows users to explore, search, and curate artworks from two APIs, The MET and Rijksmuseum collections. Built with React and Vite, it provides a seamless, interactive user experience for art enthusiasts, collectors, and researchers alike. The app fetches data from the public APIs to display a diverse range of artworks and their details, empowering users to discover and organise their favourite pieces.
 
 ## Features
 -**Artwork Search:** Easily search for artworks by title, artist, or collection.
